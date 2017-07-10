@@ -14,6 +14,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void getData () {
+
+        setTitleToCity(); //run method to set title of activity to currently active city
+    }
+
+    protected void setTitleToCity () {
         setTitle("test");
     }
 }
