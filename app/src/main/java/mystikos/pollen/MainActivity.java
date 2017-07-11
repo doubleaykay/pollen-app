@@ -44,14 +44,13 @@ public class MainActivity extends AppCompatActivity {
     private void run() {
         //getZip();
         getPollenData();
-        //getLocationData();
         setPollenText();
-        //setLocationText();
+        setLocationText();
         //setTheme(); DOES NOT WORK YET
     }
 
     private String[] getPollenData() {
-        String[] pollen = new String[3];
+        String[] pollen = new String[5];
         try {
             URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=02145&Affiliateid=9642&AppID=2.1.0&uid=6693636764");
             //URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=" + getZip() + "&Affiliateid=9642&AppID=2.1.0&uid=6693636764"); //url with zip code variable
@@ -60,8 +59,10 @@ public class MainActivity extends AppCompatActivity {
             jelement = new JsonParser().parse(new InputStreamReader(in));
             jobject = jelement.getAsJsonObject();
 
-            jobject = jobject.getAsJsonObject("allergyForecast");
+            pollen[3] = jobject.get("City").toString(); //city name
+            pollen[4] = jobject.get("State").toString(); //state abbreviation
 
+            jobject = jobject.getAsJsonObject("allergyForecast");
             pollen[0] = jobject.get("Day0").toString(); //pollen today
             pollen[1] = jobject.get("Day1").toString(); //pollen tomorrow
             pollen[2] = jobject.get("Day2").toString(); //pollen day after
@@ -91,19 +92,9 @@ public class MainActivity extends AppCompatActivity {
     } //method to set activity theme based on pollen level
 
     private void setLocationText() {
-        try {
-            URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=02145&Affiliateid=9642&AppID=2.1.0&uid=6693636764");
-            //URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=" + getZip() + "&Affiliateid=9642&AppID=2.1.0&uid=6693636764"); //url with zip code variable
-            InputStream in = url.openStream();
-
-            jelement2 = new JsonParser().parse(new InputStreamReader(in));
-            locationobject = jelement2.getAsJsonObject();
-
-            locationobject = locationobject.getAsJsonObject("ForecastInfo");
-            String city = locationobject.get("City").toString();
-            String state = locationobject.get("State").toString();
-            String location = city + "," + state;
-            setTitle(location);
-        } catch (Exception e) {e.printStackTrace();}
-    } //method to set title to location, currently does not work
+        String city = getPollenData()[3].replace("\"", "");
+        String state = getPollenData()[4].replace("\"", "");
+        String location = city + ", " + state;
+        setTitle(location);
+    }
 }
