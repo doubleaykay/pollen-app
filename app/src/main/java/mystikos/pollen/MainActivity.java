@@ -1,6 +1,8 @@
 package mystikos.pollen;
 
 import android.os.StrictMode;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         getPollenData();
         setPollenText();
         setLocationText();
-        //setTheme(); DOES NOT WORK YET
     }
 
     private String[] getPollenData() {
@@ -72,8 +73,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void setPollenText() {
         JnumberToday.setText(getPollenData()[0]);
+        setTodayTextColor();
         JnumberTomorrow.setText(getPollenData()[1]);
+        setTomorrowTextColor();
         JnumberDayAfter.setText(getPollenData()[2]);
+        setDayAfterTextColor();
     } //method to set the textviews for pollen data based on values in array returned by method getPollenData()
 
     private void getZip() {
@@ -81,15 +85,35 @@ public class MainActivity extends AppCompatActivity {
         //return zip;
     } //method to get zip code from settings file
 
-    private void setTheme() {
+    private void setTodayTextColor() {
         double pollenToday = Double.parseDouble(getPollenData()[0]);
         if ( pollenToday <= 4.0)
-            super.setTheme(R.style.green);
-        if ( pollenToday > 4.0 && pollenToday <= 8.0)
-            super.setTheme(R.style.yellow);
+            JnumberToday.setTextColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
+        else if ( pollenToday > 4.0 && pollenToday <= 8.0)
+            JnumberToday.setTextColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
         else
-            super.setTheme(R.style.red);
-    } //method to set activity theme based on pollen level
+            JnumberToday.setTextColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
+    } //set today text color based on pollen level
+
+    private void setTomorrowTextColor() {
+        double pollenTomorrow = Double.parseDouble(getPollenData()[1]);
+        if ( pollenTomorrow <= 4.0)
+            JnumberTomorrow.setTextColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
+        else if ( pollenTomorrow > 4.0 && pollenTomorrow <= 8.0)
+            JnumberTomorrow.setTextColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
+        else
+            JnumberTomorrow.setTextColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
+    } //set tomorrow text color based on pollen level
+
+    private void setDayAfterTextColor() {
+        double pollenDayAfter = Double.parseDouble(getPollenData()[2]);
+        if ( pollenDayAfter <= 4.0)
+            JnumberDayAfter.setTextColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
+        else if ( pollenDayAfter > 4.0 && pollenDayAfter <= 8.0)
+            JnumberDayAfter.setTextColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
+        else
+            JnumberDayAfter.setTextColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
+    } //set day after text color based on pollen level
 
     private void setLocationText() {
         String city = getPollenData()[3].replace("\"", "");
