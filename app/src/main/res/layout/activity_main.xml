@@ -12,8 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="100dp"
         android:text="@string/StextToday"
+        android:textSize="40sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,14 +23,12 @@
         android:id="@+id/numberToday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="12.7"
         android:textSize="175sp"
-        app:layout_constraintBottom_toTopOf="@+id/textTomorrow"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textToday" />
@@ -41,6 +40,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:text="@string/StextTomorrow"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/numberTomorrow"
         app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -62,11 +62,12 @@
         android:layout_marginBottom="8dp"
         android:layout_marginRight="8dp"
         android:text="@string/StextDayAfter"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/numberTomorrow"
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
-        android:id="@+id/numberTomorrow"
+        android:id="@+id/numberDayAfter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
