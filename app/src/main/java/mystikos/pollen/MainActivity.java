@@ -62,6 +62,14 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {e.printStackTrace();}
     } //method to get pollen data and set it into its respective textviews
 
+    protected void getZip () {
+
+    } //method to get zip code from settings file
+
+    protected void setTheme () {
+
+    }
+
     protected void setLocationText () {
         try {
             URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=02145&Affiliateid=9642&AppID=2.1.0&uid=6693636764");
