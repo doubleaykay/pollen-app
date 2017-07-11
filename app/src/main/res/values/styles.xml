@@ -8,25 +8,4 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="green" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/greenPrimary</item>
-        <item name="colorPrimaryDark">@color/greenPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:colorBackground">@color/greenPrimary</item>
-    </style>
-
-    <style name="yellow" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/yellowPrimary</item>
-        <item name="colorPrimaryDark">@color/yellowPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:colorBackground">@color/yellowPrimary</item>
-    </style>
-
-    <style name="red" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/redPrimary</item>
-        <item name="colorPrimaryDark">@color/redPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:colorBackground">@color/redPrimary</item>
-    </style>
-
 </resources>
