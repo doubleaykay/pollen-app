@@ -6,71 +6,95 @@
     android:layout_height="match_parent"
     tools:context="mystikos.pollen.MainActivity">
 
-    <TextView
-        android:id="@+id/textToday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardToday"
+        android:layout_width="393dp"
+        android:layout_height="378dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="100dp"
-        android:text="@string/StextToday"
-        android:textSize="40sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/numberToday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:textSize="175sp"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textToday" />
+        card_view:cardCornerRadius="4dp"
+        card_view:layout_constraintBottom_toTopOf="@+id/cardTomorrow"
+        card_view:layout_constraintHorizontal_bias="0.0"
+        card_view:layout_constraintLeft_toLeftOf="parent"
+        card_view:layout_constraintRight_toRightOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteY="-5dp">
 
-    <TextView
-        android:id="@+id/textTomorrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/textToday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:text="@string/StextToday"
+            android:textSize="40sp" />
+
+        <TextView
+            android:id="@+id/numberToday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="175sp" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardTomorrow"
+        android:layout_width="193dp"
+        android:layout_height="194dp"
+        android:layout_gravity="center"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
-        android:text="@string/StextTomorrow"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/numberTomorrow"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:layout_marginStart="8dp"
+        card_view:cardCornerRadius="4dp"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintLeft_toLeftOf="parent">
 
-    <TextView
-        android:id="@+id/numberTomorrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:textSize="80sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        <TextView
+            android:id="@+id/textTomorrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:text="@string/StextTomorrow"
+            android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/textDayAfter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/numberTomorrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="80sp" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardDayAfter"
+        android:layout_width="193dp"
+        android:layout_height="194dp"
+        android:layout_gravity="center"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="@string/StextDayAfter"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/numberTomorrow"
-        app:layout_constraintRight_toRightOf="parent" />
+        card_view:cardCornerRadius="4dp"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteX="208dp">
 
-    <TextView
-        android:id="@+id/numberDayAfter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
-        android:textSize="80sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        <TextView
+            android:id="@+id/textDayAfter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/StextDayAfter"
+            android:textSize="24sp"
+            android:layout_gravity="top|center_horizontal"/>
+
+        <TextView
+            android:id="@+id/numberDayAfter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="80sp"
+            android:layout_gravity="center"/>
+    </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView JnumberDayAfter;
     private JsonElement jelement;
     private JsonObject jobject;
-    private JsonElement jelement2;
-    private JsonObject locationobject;
+    private CardView JcardToday;
+    private CardView JcardTomorrow;
+    private CardView JcardDayAfter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
         JnumberToday = (TextView) findViewById(R.id.numberToday);
         JnumberTomorrow = (TextView) findViewById(R.id.numberTomorrow);
         JnumberDayAfter = (TextView) findViewById(R.id.numberDayAfter);
+
+        JcardToday = (CardView) findViewById(R.id.cardToday);
+        JcardTomorrow = (CardView) findViewById(R.id.cardTomorrow);
+        JcardDayAfter = (CardView) findViewById(R.id.cardDayAfter);
 
         run();
     }
@@ -128,12 +134,15 @@ public class MainActivity extends AppCompatActivity {
     private void setTodayTextColor() {
         double pollenToday = Double.parseDouble(getPollenData()[0]);
         if ( pollenToday <= 4.0)
-            JnumberToday.setTextColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
+            JcardToday.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
+            //JnumberToday.setTextColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
         else if ( pollenToday > 4.0 && pollenToday <= 8.0)
-            JnumberToday.setTextColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
+            JcardToday.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
+            //JnumberToday.setTextColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
         else
-            JnumberToday.setTextColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
-    } //set today text color based on pollen level
+            JcardToday.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
+            //JnumberToday.setTextColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
+    } //set today card color based on pollen level
 
     private void setTomorrowTextColor() {
         double pollenTomorrow = Double.parseDouble(getPollenData()[1]);
@@ -143,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
             JnumberTomorrow.setTextColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
         else
             JnumberTomorrow.setTextColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
-    } //set tomorrow text color based on pollen level
+    } //set tomorrow card color based on pollen level //TODO change card color not text color
 
     private void setDayAfterTextColor() {
         double pollenDayAfter = Double.parseDouble(getPollenData()[2]);
@@ -153,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
             JnumberDayAfter.setTextColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
         else
             JnumberDayAfter.setTextColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
-    } //set day after text color based on pollen level
+    } //set day after card color based on pollen level //TODO change card color not text color
 
     private void setLocationText() {
         String city = getPollenData()[3].replace("\"", "");
