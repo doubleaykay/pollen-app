@@ -1,6 +1,7 @@
 package mystikos.pollen;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         JnumberTomorrow.setText(getPollenData()[1]);
         JnumberDayAfter.setText(getPollenData()[2]);
         //boolean changeColor = true; //TODO get "change color" settings option and run code if true
-        //if (changeColor = true)
+        //if (changeColor)
             setTodayTextColor();
             setTomorrowTextColor();
             setDayAfterTextColor();
