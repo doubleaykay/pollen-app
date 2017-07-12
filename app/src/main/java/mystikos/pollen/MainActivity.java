@@ -106,19 +106,21 @@ public class MainActivity extends AppCompatActivity {
             pollen[2] = jobject.get("Day2").toString(); //pollen day after
         } catch (Exception e) {e.printStackTrace();}
         return pollen;
-    } //method to parse pollen data and return array of values
+    } //method to parse pollen data and return array of values //TODO turn into AsyncTask to not lag the main thread
 
     private void setPollenText() {
         JnumberToday.setText(getPollenData()[0]);
-        setTodayTextColor();
         JnumberTomorrow.setText(getPollenData()[1]);
-        setTomorrowTextColor();
         JnumberDayAfter.setText(getPollenData()[2]);
-        setDayAfterTextColor();
+        //boolean changeColor = true; //TODO get "change color" settings option and run code if true
+        //if (changeColor = true)
+            setTodayTextColor();
+            setTomorrowTextColor();
+            setDayAfterTextColor();
     } //method to set the textviews for pollen data based on values in array returned by method getPollenData()
 
     private void getZip() {
-        String zip;
+        String zip; //TODO change into string method and get zip code from SharedPreferences
         //return zip;
     } //method to get zip code from settings file
 
@@ -157,5 +159,5 @@ public class MainActivity extends AppCompatActivity {
         String state = getPollenData()[4].replace("\"", "");
         String location = city + ", " + state;
         setTitle(location);
-    }
+    } //set title of activity based on parsed location data
 }
