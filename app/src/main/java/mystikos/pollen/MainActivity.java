@@ -1,5 +1,6 @@
 package mystikos.pollen;
 
+import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
@@ -57,10 +58,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuAbout:
-                // put your code here to respond to the button tap
+                Intent about = new Intent(MainActivity.this, AboutActivity.class);
+                MainActivity.this.startActivity(about);
                 return true;
             case R.id.menuSettings:
-                // put your code here to respond to the button tap
+                Intent settings = new Intent(MainActivity.this, SettingsActivity.class);
+                MainActivity.this.startActivity(settings);
                 return true;
             case R.id.menuRefresh:
                 run();
