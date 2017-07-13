@@ -147,21 +147,27 @@ public class MainActivity extends AppCompatActivity {
     private void setTomorrowTextColor() {
         double pollenTomorrow = Double.parseDouble(getPollenData()[1]);
         if ( pollenTomorrow <= 4.0)
-            JnumberTomorrow.setTextColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
+            JcardTomorrow.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
+            //JnumberTomorrow.setTextColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
         else if ( pollenTomorrow > 4.0 && pollenTomorrow <= 8.0)
-            JnumberTomorrow.setTextColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
+            JcardTomorrow.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
+            //JnumberTomorrow.setTextColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
         else
-            JnumberTomorrow.setTextColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
+            JcardTomorrow.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
+            //JnumberTomorrow.setTextColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
     } //set tomorrow card color based on pollen level //TODO change card color not text color
 
     private void setDayAfterTextColor() {
         double pollenDayAfter = Double.parseDouble(getPollenData()[2]);
         if ( pollenDayAfter <= 4.0)
-            JnumberDayAfter.setTextColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
+            JcardDayAfter.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
+            //JnumberDayAfter.setTextColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
         else if ( pollenDayAfter > 4.0 && pollenDayAfter <= 8.0)
-            JnumberDayAfter.setTextColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
+            JcardDayAfter.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
+            //JnumberDayAfter.setTextColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
         else
-            JnumberDayAfter.setTextColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
+            JcardDayAfter.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
+            //JnumberDayAfter.setTextColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
     } //set day after card color based on pollen level //TODO change card color not text color
 
     private void setLocationText() {
