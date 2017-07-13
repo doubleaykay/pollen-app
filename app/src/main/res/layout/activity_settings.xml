@@ -6,4 +6,13 @@
     android:layout_height="match_parent"
     tools:context="mystikos.pollen.SettingsActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="0dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"/>
+
 </android.support.constraint.ConstraintLayout>
