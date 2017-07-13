@@ -135,40 +135,31 @@ public class MainActivity extends AppCompatActivity {
         double pollenToday = Double.parseDouble(getPollenData()[0]);
         if ( pollenToday <= 4.0)
             JcardToday.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
-            //JnumberToday.setTextColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
         else if ( pollenToday > 4.0 && pollenToday <= 8.0)
             JcardToday.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
-            //JnumberToday.setTextColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
         else
             JcardToday.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
-            //JnumberToday.setTextColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
     } //set today card color based on pollen level
 
     private void setTomorrowTextColor() {
         double pollenTomorrow = Double.parseDouble(getPollenData()[1]);
         if ( pollenTomorrow <= 4.0)
             JcardTomorrow.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
-            //JnumberTomorrow.setTextColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
         else if ( pollenTomorrow > 4.0 && pollenTomorrow <= 8.0)
             JcardTomorrow.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
-            //JnumberTomorrow.setTextColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
         else
             JcardTomorrow.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
-            //JnumberTomorrow.setTextColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
-    } //set tomorrow card color based on pollen level //TODO change card color not text color
+    } //set tomorrow card color based on pollen level
 
     private void setDayAfterTextColor() {
         double pollenDayAfter = Double.parseDouble(getPollenData()[2]);
         if ( pollenDayAfter <= 4.0)
             JcardDayAfter.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
-            //JnumberDayAfter.setTextColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
         else if ( pollenDayAfter > 4.0 && pollenDayAfter <= 8.0)
             JcardDayAfter.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
-            //JnumberDayAfter.setTextColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
         else
             JcardDayAfter.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
-            //JnumberDayAfter.setTextColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
-    } //set day after card color based on pollen level //TODO change card color not text color
+    } //set day after card color based on pollen level
 
     private void setLocationText() {
         String city = getPollenData()[3].replace("\"", "");
