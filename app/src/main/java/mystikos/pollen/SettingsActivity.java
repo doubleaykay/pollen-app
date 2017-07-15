@@ -1,10 +1,17 @@
 package mystikos.pollen;
 
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class SettingsActivity extends AppCompatActivity {
+
+    private EditText JtextZip;
+    private Button JbuttonSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,5 +20,18 @@ public class SettingsActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+        setTitle("Settings");
+
+        JtextZip = (EditText) findViewById(R.id.textZip);
+        JbuttonSave = (Button) findViewById(R.id.buttonSave);
     }
+
+    public void save(View v) {
+        PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit().putString("zip", JtextZip.getText().toString()).apply();
+        //MainActivity.run();
+    }
+
+    private void getLocation() {
+        //location services bs
+    } //TODO get location from device location services and then pull zip code from there
 }

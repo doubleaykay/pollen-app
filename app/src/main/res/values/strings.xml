@@ -3,4 +3,6 @@
     <string name="StextToday">POLLEN TODAY:</string>
     <string name="StextTomorrow">TOMORROW:</string>
     <string name="StextDayAfter">DAY AFTER:</string>
+    <string name="SbuttonSave">Save</string>
+    <string name="StextZip">Zip Code</string>
 </resources>

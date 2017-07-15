@@ -3,6 +3,7 @@ package mystikos.pollen;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.StrictMode;
+import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.ActionBar;
@@ -84,8 +85,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void run() {
-        //getZip();
+    public void run() {
         //setLoadingText();
         getPollenData();
         setPollenText();
@@ -96,13 +96,13 @@ public class MainActivity extends AppCompatActivity {
         JnumberToday.setText("...");
         JnumberTomorrow.setText("...");
         JnumberDayAfter.setText("...");
-    }
+    } //set until AsyncTask loads data
 
     private String[] getPollenData() {
         String[] pollen = new String[5];
         try {
-            URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=02145&Affiliateid=9642&AppID=2.1.0&uid=6693636764");
-            //URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=" + getZip() + "&Affiliateid=9642&AppID=2.1.0&uid=6693636764"); //url with zip code variable
+            //URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=02145&Affiliateid=9642&AppID=2.1.0&uid=6693636764");
+            URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=" + getZip() + "&Affiliateid=9642&AppID=2.1.0&uid=6693636764"); //url with zip code variable
             InputStream in = url.openStream();
 
             jelement = new JsonParser().parse(new InputStreamReader(in));
@@ -130,9 +130,10 @@ public class MainActivity extends AppCompatActivity {
             setDayAfterTextColor();
     } //method to set the textviews for pollen data based on values in array returned by method getPollenData()
 
-    private void getZip() {
-        String zip; //TODO change into string method and get zip code from SharedPreferences
+    private String getZip() {
+        //String zip = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getString("zip", "02145");
         //return zip;
+        return PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getString("zip", "02145");
     } //method to get zip code from settings file
 
     private void setTodayTextColor() {

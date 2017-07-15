@@ -13,5 +13,6 @@ public class AboutActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+        setTitle("About");
     }
 }
