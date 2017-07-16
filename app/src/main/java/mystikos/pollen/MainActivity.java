@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void run() {
         //setLoadingText();
-        getPollenData();
+        getPollenData(); //TODO this becomes the async task
         setPollenText();
         setLocationText();
     }
@@ -120,9 +120,6 @@ public class MainActivity extends AppCompatActivity {
         JnumberToday.setText(pollen[0]);
         JnumberTomorrow.setText(pollen[1]);
         JnumberDayAfter.setText(pollen[2]);
-        //setTodayTextColor();
-        //setTomorrowTextColor();
-        //setDayAfterTextColor();
         setCardColor();
     } //method to set the textviews for pollen data based on values in array returned by method getPollenData()
 
