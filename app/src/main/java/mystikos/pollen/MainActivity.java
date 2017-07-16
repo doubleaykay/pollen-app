@@ -19,6 +19,7 @@ import com.google.gson.JsonParser;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     private CardView JcardToday;
     private CardView JcardTomorrow;
     private CardView JcardDayAfter;
+
+    private String[] pollen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         JcardToday = (CardView) findViewById(R.id.cardToday);
         JcardTomorrow = (CardView) findViewById(R.id.cardTomorrow);
         JcardDayAfter = (CardView) findViewById(R.id.cardDayAfter);
+
+        pollen = new String[5];
 
         run();
     }
@@ -94,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
     } //set until AsyncTask loads data
 
     private String[] getPollenData() {
-        String[] pollen = new String[5];
         try {
             URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=" + getZip() + "&Affiliateid=9642&AppID=2.1.0&uid=6693636764"); //url with zip code variable
             InputStream in = url.openStream();
@@ -114,9 +118,9 @@ public class MainActivity extends AppCompatActivity {
     } //method to parse pollen data and return array of values //TODO turn into AsyncTask to not lag the main thread
 
     private void setPollenText() {
-        JnumberToday.setText(getPollenData()[0]);
-        JnumberTomorrow.setText(getPollenData()[1]);
-        JnumberDayAfter.setText(getPollenData()[2]);
+        JnumberToday.setText(pollen[0]);
+        JnumberTomorrow.setText(pollen[1]);
+        JnumberDayAfter.setText(pollen[2]);
         setTodayTextColor();
         setTomorrowTextColor();
         setDayAfterTextColor();
@@ -127,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
     } //method to get zip code from settings file
 
     private void setTodayTextColor() {
-        double pollenToday = Double.parseDouble(getPollenData()[0]);
+        double pollenToday = Double.parseDouble(pollen[0]);
         if ( pollenToday <= 4.0)
             JcardToday.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
         else if ( pollenToday > 4.0 && pollenToday <= 8.0)
@@ -137,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
     } //set today card color based on pollen level
 
     private void setTomorrowTextColor() {
-        double pollenTomorrow = Double.parseDouble(getPollenData()[1]);
+        double pollenTomorrow = Double.parseDouble(pollen[1]);
         if ( pollenTomorrow <= 4.0)
             JcardTomorrow.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
         else if ( pollenTomorrow > 4.0 && pollenTomorrow <= 8.0)
@@ -147,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
     } //set tomorrow card color based on pollen level
 
     private void setDayAfterTextColor() {
-        double pollenDayAfter = Double.parseDouble(getPollenData()[2]);
+        double pollenDayAfter = Double.parseDouble(pollen[2]);
         if ( pollenDayAfter <= 4.0)
             JcardDayAfter.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
         else if ( pollenDayAfter > 4.0 && pollenDayAfter <= 8.0)
@@ -157,8 +161,8 @@ public class MainActivity extends AppCompatActivity {
     } //set day after card color based on pollen level
 
     private void setLocationText() {
-        String city = getPollenData()[3].replace("\"", "");
-        String state = getPollenData()[4].replace("\"", "");
+        String city = pollen[3].replace("\"", "");
+        String state = pollen[4].replace("\"", "");
         String location = city + ", " + state;
         setTitle(location);
     } //set title of activity based on parsed location data
