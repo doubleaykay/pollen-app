@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         JnumberDayAfter.setText("...");
     } //set until AsyncTask loads data
 
-    private String[] getPollenData() {
+    private void getPollenData() {
         try {
             URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=" + getZip() + "&Affiliateid=9642&AppID=2.1.0&uid=6693636764"); //url with zip code variable
             InputStream in = url.openStream();
@@ -114,51 +114,47 @@ public class MainActivity extends AppCompatActivity {
             pollen[1] = jobject.get("Day1").toString(); //pollen tomorrow
             pollen[2] = jobject.get("Day2").toString(); //pollen day after
         } catch (Exception e) {e.printStackTrace();}
-        return pollen;
     } //method to parse pollen data and return array of values //TODO turn into AsyncTask to not lag the main thread
 
     private void setPollenText() {
         JnumberToday.setText(pollen[0]);
         JnumberTomorrow.setText(pollen[1]);
         JnumberDayAfter.setText(pollen[2]);
-        setTodayTextColor();
-        setTomorrowTextColor();
-        setDayAfterTextColor();
+        //setTodayTextColor();
+        //setTomorrowTextColor();
+        //setDayAfterTextColor();
+        setCardColor();
     } //method to set the textviews for pollen data based on values in array returned by method getPollenData()
 
     private String getZip() {
         return PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getString("zip", "02145");
     } //method to get zip code from settings file
 
-    private void setTodayTextColor() {
+    private void setCardColor() {
         double pollenToday = Double.parseDouble(pollen[0]);
         if ( pollenToday <= 4.0)
             JcardToday.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
         else if ( pollenToday > 4.0 && pollenToday <= 8.0)
             JcardToday.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
         else
-            JcardToday.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
-    } //set today card color based on pollen level
+            JcardToday.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.red, null)); //today card color
 
-    private void setTomorrowTextColor() {
         double pollenTomorrow = Double.parseDouble(pollen[1]);
         if ( pollenTomorrow <= 4.0)
             JcardTomorrow.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
         else if ( pollenTomorrow > 4.0 && pollenTomorrow <= 8.0)
             JcardTomorrow.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
         else
-            JcardTomorrow.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
-    } //set tomorrow card color based on pollen level
+            JcardTomorrow.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.red, null)); //tomorrow card color
 
-    private void setDayAfterTextColor() {
         double pollenDayAfter = Double.parseDouble(pollen[2]);
         if ( pollenDayAfter <= 4.0)
             JcardDayAfter.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.green, null));
         else if ( pollenDayAfter > 4.0 && pollenDayAfter <= 8.0)
             JcardDayAfter.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
         else
-            JcardDayAfter.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.red, null));
-    } //set day after card color based on pollen level
+            JcardDayAfter.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.red, null)); //day after card color
+    }
 
     private void setLocationText() {
         String city = pollen[3].replace("\"", "");
