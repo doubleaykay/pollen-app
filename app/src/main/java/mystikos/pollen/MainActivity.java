@@ -4,17 +4,13 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.JsonElement;
@@ -23,7 +19,6 @@ import com.google.gson.JsonParser;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
@@ -101,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
     private String[] getPollenData() {
         String[] pollen = new String[5];
         try {
-            //URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=02145&Affiliateid=9642&AppID=2.1.0&uid=6693636764");
             URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=" + getZip() + "&Affiliateid=9642&AppID=2.1.0&uid=6693636764"); //url with zip code variable
             InputStream in = url.openStream();
 
@@ -123,16 +117,12 @@ public class MainActivity extends AppCompatActivity {
         JnumberToday.setText(getPollenData()[0]);
         JnumberTomorrow.setText(getPollenData()[1]);
         JnumberDayAfter.setText(getPollenData()[2]);
-        //boolean changeColor = true; //TODO get "change color" settings option and run code if true
-        //if (changeColor)
-            setTodayTextColor();
-            setTomorrowTextColor();
-            setDayAfterTextColor();
+        setTodayTextColor();
+        setTomorrowTextColor();
+        setDayAfterTextColor();
     } //method to set the textviews for pollen data based on values in array returned by method getPollenData()
 
     private String getZip() {
-        //String zip = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getString("zip", "02145");
-        //return zip;
         return PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getString("zip", "02145");
     } //method to get zip code from settings file
 
