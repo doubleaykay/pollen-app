@@ -5,4 +5,5 @@
     <string name="StextDayAfter">DAY AFTER:</string>
     <string name="SbuttonSave">Save</string>
     <string name="StextZip">Zip Code</string>
+    <string name="SbuttonCancel">Cancel</string>
 </resources>

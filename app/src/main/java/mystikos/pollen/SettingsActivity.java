@@ -1,5 +1,6 @@
 package mystikos.pollen;
 
+import android.content.Intent;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,7 +29,15 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void save(View v) {
         PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit().putString("zip", JtextZip.getText().toString()).apply();
-        //MainActivity.run();
+        Intent myIntent = new Intent(SettingsActivity.this, MainActivity.class);
+        SettingsActivity.this.startActivity(myIntent);
+        finish();
+    }
+
+    public void cancel(View v) {
+        Intent myIntent = new Intent(SettingsActivity.this, MainActivity.class);
+        SettingsActivity.this.startActivity(myIntent);
+        finish();
     }
 
     private void getLocation() {
