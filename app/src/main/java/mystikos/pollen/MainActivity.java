@@ -1,6 +1,7 @@
 package mystikos.pollen;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
@@ -153,6 +154,12 @@ public class MainActivity extends AppCompatActivity {
             JcardDayAfter.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
         else
             JcardDayAfter.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.red, null)); //day after card color
+    }
+
+    private void resetCardColor() {
+        JcardToday.setCardBackgroundColor(Color.TRANSPARENT);
+        JcardTomorrow.setCardBackgroundColor(Color.TRANSPARENT);
+        JcardDayAfter.setCardBackgroundColor(Color.TRANSPARENT);
     }
 
     private void setLocationText() {
