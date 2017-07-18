@@ -3,7 +3,6 @@ package mystikos.pollen;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -43,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
-        //StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        //StrictMode.setThreadPolicy(policy);
-
         JnumberToday = (TextView) findViewById(R.id.numberToday);
         JnumberTomorrow = (TextView) findViewById(R.id.numberTomorrow);
         JnumberDayAfter = (TextView) findViewById(R.id.numberDayAfter);
@@ -61,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
@@ -90,9 +85,6 @@ public class MainActivity extends AppCompatActivity {
         //resetCardColor(); //TODO reset card color to default
         setLoadingText();
         new getPollenDataAsync().execute();
-        //getPollenData(); //TODO this becomes the async task
-        //setPollenText();
-        //setLocationText();
     }
 
     private void setLoadingText() {
@@ -101,34 +93,16 @@ public class MainActivity extends AppCompatActivity {
         JnumberDayAfter.setText("...");
     } //set until AsyncTask loads data
 
-    private void getPollenData() {
-        try {
-            URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=" + getZip() + "&Affiliateid=9642&AppID=2.1.0&uid=6693636764"); //url with zip code variable
-            InputStream in = url.openStream();
-
-            jelement = new JsonParser().parse(new InputStreamReader(in));
-            jobject = jelement.getAsJsonObject();
-
-            pollen[3] = jobject.get("City").toString(); //city name
-            pollen[4] = jobject.get("State").toString(); //state abbreviation
-
-            jobject = jobject.getAsJsonObject("allergyForecast");
-            pollen[0] = jobject.get("Day0").toString(); //pollen today
-            pollen[1] = jobject.get("Day1").toString(); //pollen tomorrow
-            pollen[2] = jobject.get("Day2").toString(); //pollen day after
-        } catch (Exception e) {e.printStackTrace();}
-    } //method to parse pollen data and return array of values //TODO turn into AsyncTask to not lag the main thread
-
     private void setPollenText() {
         JnumberToday.setText(pollen[0]);
         JnumberTomorrow.setText(pollen[1]);
         JnumberDayAfter.setText(pollen[2]);
         setCardColor();
-    } //method to set the textviews for pollen data based on values in array returned by method getPollenData()
+    } //method to set the textviews for pollen data based on values in pollen array
 
     private String getZip() {
         return PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getString("zip", "02145");
-    } //method to get zip code from settings file
+    } //method to get zip code from shared preferences
 
     private void setCardColor() {
         double pollenToday = Double.parseDouble(pollen[0]);
