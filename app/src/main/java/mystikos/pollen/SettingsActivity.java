@@ -54,6 +54,14 @@ public class SettingsActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent myIntent = new Intent(SettingsActivity.this, MainActivity.class);
+        SettingsActivity.this.startActivity(myIntent);
+        finish();
+        super.onBackPressed();
+    }
+
     private void getLocation() {
         //location services bs
     } //TODO get location from device location services and then pull zip code from there
