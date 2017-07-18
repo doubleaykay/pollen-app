@@ -1,5 +1,6 @@
 package mystikos.pollen;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -12,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -53,13 +55,13 @@ public class MainActivity extends AppCompatActivity {
         pollen = new String[5];
 
         run();
-    }
+    } //run when activity created
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
-    }
+    } //inflate menu
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -79,13 +81,13 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    } //listener for menu items
 
     public void run() {
         //resetCardColor(); //TODO reset card color to default
         setLoadingText();
         new getPollenDataAsync().execute();
-    }
+    } //calls other methods, linked to refresh button
 
     private void setLoadingText() {
         JnumberToday.setText("...");
@@ -128,13 +130,13 @@ public class MainActivity extends AppCompatActivity {
             JcardDayAfter.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.yellow, null));
         else
             JcardDayAfter.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.red, null)); //day after card color
-    }
+    } //set card color based on pollen level
 
     private void resetCardColor() {
         JcardToday.setCardBackgroundColor(Color.TRANSPARENT);
         JcardTomorrow.setCardBackgroundColor(Color.TRANSPARENT);
         JcardDayAfter.setCardBackgroundColor(Color.TRANSPARENT);
-    }
+    } //reset card background to default
 
     private void setLocationText() {
         String city = pollen[3].replace("\"", "");
@@ -171,8 +173,19 @@ public class MainActivity extends AppCompatActivity {
             pollen[2] = result[2];
             pollen[3] = result[3];
             pollen[4] = result[4];
-            setPollenText();
-            setLocationText();
+
+            if (pollen[0] == null) {
+                Context context = getApplicationContext();
+                CharSequence text = "Please enter a valid zip code in location settings!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            } //if array is blank due to invalid zip code, alert user instead of just crashing
+            else {
+                setPollenText();
+                setLocationText();
+            } //if array is not blank, continue as normal
         }
     }
 }
