@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+        //StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        //StrictMode.setThreadPolicy(policy);
 
         JnumberToday = (TextView) findViewById(R.id.numberToday);
         JnumberTomorrow = (TextView) findViewById(R.id.numberTomorrow);
@@ -86,10 +86,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void run() {
-        //setLoadingText();
-        getPollenData(); //TODO this becomes the async task
-        setPollenText();
-        setLocationText();
+        //resetCardColor(); //TODO reset card color to default
+        setLoadingText();
+        new getPollenDataAsync().execute();
+        //getPollenData(); //TODO this becomes the async task
+        //setPollenText();
+        //setLocationText();
     }
 
     private void setLoadingText() {
@@ -159,4 +161,37 @@ public class MainActivity extends AppCompatActivity {
         String location = city + ", " + state;
         setTitle(location);
     } //set title of activity based on parsed location data
+
+    private class getPollenDataAsync extends AsyncTask<Void, Void, String[]> {
+        protected String[] doInBackground(Void... params) {
+            String[] asyncdata = new String[5];
+            try {
+                URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=" + getZip() + "&Affiliateid=9642&AppID=2.1.0&uid=6693636764"); //url with zip code variable
+                InputStream in = url.openStream();
+
+                jelement = new JsonParser().parse(new InputStreamReader(in));
+                jobject = jelement.getAsJsonObject();
+
+                asyncdata[3] = jobject.get("City").toString(); //city name
+                asyncdata[4] = jobject.get("State").toString(); //state abbreviation
+
+                jobject = jobject.getAsJsonObject("allergyForecast");
+                asyncdata[0] = jobject.get("Day0").toString(); //pollen today
+                asyncdata[1] = jobject.get("Day1").toString(); //pollen tomorrow
+                asyncdata[2] = jobject.get("Day2").toString(); //pollen day after
+            } catch (Exception e) {e.printStackTrace();}
+            return asyncdata;
+        }
+
+        protected void onPostExecute(String[] result) {
+            super.onPostExecute(result);
+            pollen[0] = result[0];
+            pollen[1] = result[1];
+            pollen[2] = result[2];
+            pollen[3] = result[3];
+            pollen[4] = result[4];
+            setPollenText();
+            setLocationText();
+        }
+    }
 }
