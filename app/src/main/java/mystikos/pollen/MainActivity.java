@@ -22,12 +22,14 @@ import com.google.gson.JsonParser;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView JnumberToday;
     private TextView JnumberTomorrow;
     private TextView JnumberDayAfter;
+    private TextView JtextDayAfter;
     private JsonElement jelement;
     private JsonObject jobject;
     private CardView JcardToday;
@@ -47,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         JnumberToday = (TextView) findViewById(R.id.numberToday);
         JnumberTomorrow = (TextView) findViewById(R.id.numberTomorrow);
         JnumberDayAfter = (TextView) findViewById(R.id.numberDayAfter);
+
+        JtextDayAfter = (TextView) findViewById(R.id.textDayAfter);
 
         JcardToday = (CardView) findViewById(R.id.cardToday);
         JcardTomorrow = (CardView) findViewById(R.id.cardTomorrow);
@@ -84,10 +88,41 @@ public class MainActivity extends AppCompatActivity {
     } //listener for menu items
 
     public void run() {
+        //setDayAfterTitleText();
         //resetCardColor(); //TODO reset card color to default
         setLoadingText();
         new getPollenDataAsync().execute();
     } //calls other methods, linked to refresh button
+
+    private void setDayAfterTitleText() {
+        String[] days = new String[7];
+        days[0] = "SUNDAY";
+        days[1] = "MONDAY";
+        days[2] = "TUESDAY";
+        days[3] = "WEDNESDAY";
+        days[4] = "THURSDAY";
+        days[5] = "FRIDAY";
+        days[6] = "SATURDAY";
+
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+        switch (day) {
+            case Calendar.SUNDAY:
+                JtextDayAfter.setText(days[2]);
+            case Calendar.MONDAY:
+                JtextDayAfter.setText(days[3]);
+            case Calendar.TUESDAY:
+                JtextDayAfter.setText(days[4]);
+            case Calendar.WEDNESDAY:
+                JtextDayAfter.setText(days[5]);
+            case Calendar.THURSDAY:
+                JtextDayAfter.setText(days[6]);
+            case Calendar.FRIDAY:
+                JtextDayAfter.setText(days[0]);
+            case Calendar.SATURDAY:
+                JtextDayAfter.setText(days[1]);
+        }
+    } //logic to set the day after text to the day in two days //TODO read from strings file so that this can be localized //TODO DOES NOT WORK
 
     private void setLoadingText() {
         JnumberToday.setText("...");
