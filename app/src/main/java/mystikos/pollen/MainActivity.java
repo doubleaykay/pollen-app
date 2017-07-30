@@ -19,6 +19,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -88,11 +89,35 @@ public class MainActivity extends AppCompatActivity {
     } //listener for menu items
 
     public void run() {
-        //setDayAfterTitleText();
+        //setDayAfterTitleText(); //TODO set day after title text
         //resetCardColor(); //TODO reset card color to default
         setLoadingText();
-        new getPollenDataAsync().execute();
+        if (isOnline() == true) {
+            new getPollenDataAsync().execute();
+        }
+        else {
+            Context context = getApplicationContext();
+            CharSequence text = "Please connect to the internet to proceed.";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     } //calls other methods, linked to refresh button
+
+    public boolean isOnline() {
+
+        Runtime runtime = Runtime.getRuntime();
+        try {
+
+            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+            int     exitValue = ipProcess.waitFor();
+            return (exitValue == 0);
+
+        } catch (IOException e)          { e.printStackTrace(); }
+        catch (InterruptedException e) { e.printStackTrace(); }
+
+        return false; }
 
     private void setDayAfterTitleText() {
         String[] days = new String[7];
