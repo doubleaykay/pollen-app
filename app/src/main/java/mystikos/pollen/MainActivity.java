@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void run() {
         //setDayAfterTitleText(); //TODO set day after title text
-        //resetCardColor(); //TODO reset card color to default
+        resetCardColor();
         setLoadingText();
         if (isOnline() == true) {
             new getPollenDataAsync().execute();
@@ -193,9 +193,9 @@ public class MainActivity extends AppCompatActivity {
     } //set card color based on pollen level
 
     private void resetCardColor() {
-        JcardToday.setCardBackgroundColor(Color.TRANSPARENT);
-        JcardTomorrow.setCardBackgroundColor(Color.TRANSPARENT);
-        JcardDayAfter.setCardBackgroundColor(Color.TRANSPARENT);
+        JcardToday.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.card, null));
+        JcardTomorrow.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.card, null));
+        JcardDayAfter.setCardBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.card, null));
     } //reset card background to default
 
     private void setLocationText() {
