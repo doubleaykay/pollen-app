@@ -23,7 +23,7 @@ public class AboutActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse("https://www.github.com/doubleaykay"));
+        intent.setData(Uri.parse("https://github.com/doubleaykay"));
         startActivity(intent);
     }
 
@@ -31,7 +31,7 @@ public class AboutActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse("https://www.forum.xda-developers.com/member.php?u=5535848"));
+        intent.setData(Uri.parse("https://forum.xda-developers.com/member.php?u=5535848"));
         startActivity(intent);
     }
 }
