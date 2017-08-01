@@ -119,14 +119,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="github"
-                        android:text="@string/SbuttonGit" />
+                        android:text="@string/SbuttonGit"
+                        android:textColor="#000000"/>
 
                     <Button
                         android:id="@+id/buttonXDA"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="xda"
-                        android:text="@string/SbuttonXDA" />
+                        android:text="@string/SbuttonXDA"
+                        android:textColor="#000000"/>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
