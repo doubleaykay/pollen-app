@@ -208,31 +208,22 @@
                 android:layout_gravity="center">
 
                 <TextView
-                    android:id="@+id/ideaText"
+                    android:id="@+id/anoush"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:text="@string/SideaText" />
+                    android:text="@string/anoush" />
 
                 <TextView
-                    android:id="@+id/codeText"
+                    android:id="@+id/dan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:text="@string/ScodeText" />
-
-                <TextView
-                    android:id="@+id/iconText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:text="@string/SiconText"/>
+                    android:text="@string/dan" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>

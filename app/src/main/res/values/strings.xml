@@ -8,9 +8,8 @@
     <string name="SbuttonCancel">Cancel</string>
     <string name="StitleAnoush">Anoush Khan</string>
     <string name="StitleDan">Dan Strauss</string>
-    <string name="SideaText">Idea: Anoush Khan</string>
-    <string name="ScodeText">Code: Anoush Khan</string>
-    <string name="SiconText">Icon: Dan Strauss</string>
     <string name="SbuttonGit">GitHub</string>
     <string name="SbuttonXDA">XDA</string>
+    <string name="anoush">Anoush Khan (Concept, Code)</string>
+    <string name="dan">Dan Strauss (Icon, Input)</string>
 </resources>
