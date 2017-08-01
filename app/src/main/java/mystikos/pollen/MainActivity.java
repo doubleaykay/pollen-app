@@ -106,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
     } //calls other methods, linked to refresh button
 
     public boolean isOnline() {
-
         Runtime runtime = Runtime.getRuntime();
         try {
 
@@ -163,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
     } //method to set the textviews for pollen data based on values in pollen array
 
     private String getZip() {
-        return PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getString("zip", "02145");
+        return PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getString("zip", "");
     } //method to get zip code from shared preferences
 
     private void setCardColor() {
