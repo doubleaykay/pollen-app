@@ -16,7 +16,7 @@ public class AboutActivity extends AppCompatActivity {
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        setTitle("About");
+        setTitle("About (v" + BuildConfig.VERSION_NAME + ")");
     }
 
     public void github(View v) {
