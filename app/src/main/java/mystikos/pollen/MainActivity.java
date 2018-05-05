@@ -208,7 +208,8 @@ public class MainActivity extends AppCompatActivity {
         protected String[] doInBackground(Void... params) {
             String[] asyncdata = new String[5];
             try {
-                URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=" + getZip() + "&Affiliateid=9642&AppID=2.1.0&uid=6693636764"); //url with zip code variable
+                URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=" + getZip() + "&Affiliateid=9642&AppID=2.2.4&uid=679566639b"); //url with zip code variable
+                //URL url = new URL("http://pollenapps.com/AllergyAlertWebSVC/api/1.0/Forecast/ForecastForZipCode?Zipcode=" + getZip() + "&Affiliateid=9642&AppID=2.1.0&uid=6693636764");
                 InputStream in = url.openStream();
 
                 jelement = new JsonParser().parse(new InputStreamReader(in));
